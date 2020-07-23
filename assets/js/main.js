@@ -1,5 +1,5 @@
 /*
-	Alpha by HTML5 UP
+	ZeroFour by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
@@ -7,18 +7,14 @@
 (function($) {
 
 	var	$window = $(window),
-		$body = $('body'),
-		$header = $('#header'),
-		$banner = $('#banner');
+		$body = $('body');
 
 	// Breakpoints.
 		breakpoints({
-			wide:      ( '1281px',  '1680px' ),
-			normal:    ( '981px',   '1280px' ),
-			narrow:    ( '737px',   '980px'  ),
-			narrower:  ( '737px',   '840px'  ),
-			mobile:    ( '481px',   '736px'  ),
-			mobilep:   ( null,      '480px'  )
+			xlarge:  [ '1281px',  '1680px' ],
+			large:   [ '981px',   '1280px' ],
+			medium:  [ '737px',   '980px'  ],
+			small:   [ null,      '736px'  ]
 		});
 
 	// Play initial animations on page load.
@@ -30,15 +26,20 @@
 
 	// Dropdowns.
 		$('#nav > ul').dropotron({
-			alignment: 'right'
+			offsetY: -22,
+			mode: 'fade',
+			noOpenerFade: true,
+			speed: 300,
+			detach: false
 		});
 
-	// NavPanel.
+	// Nav.
 
-		// Button.
+		// Title Bar.
 			$(
-				'<div id="navButton">' +
+				'<div id="titleBar">' +
 					'<a href="#navPanel" class="toggle"></a>' +
+					'<span class="title">' + $('#logo').html() + '</span>' +
 				'</div>'
 			)
 				.appendTo($body);
@@ -62,23 +63,5 @@
 					target: $body,
 					visibleClass: 'navPanel-visible'
 				});
-
-	// Header.
-		if (!browser.mobile
-		&&	$header.hasClass('alt')
-		&&	$banner.length > 0) {
-
-			$window.on('load', function() {
-
-				$banner.scrollex({
-					bottom:		$header.outerHeight(),
-					terminate:	function() { $header.removeClass('alt'); },
-					enter:		function() { $header.addClass('alt reveal'); },
-					leave:		function() { $header.removeClass('alt'); }
-				});
-
-			});
-
-		}
 
 })(jQuery);
